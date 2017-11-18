@@ -1,0 +1,49 @@
+<div class="container">
+
+  <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form)">
+
+  <div class="form-group" [ngClass]="form.get('newTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
+    <input type="text" class="form-control form-control-danger" id="task" placeholder="Add a task" formControlName="newTask">
+    <div class="form-control-feedback" *ngIf="form.get('newTask').hasError('required') && isSubmitted">Task name is required</div>
+  </div>
+
+
+
+      <!-- <div class="form-group">
+        <input type="text" name="task" placeholder="Add a task" [ngClass]="form.get('newTask').hasError('required') && form.get('newTask').touched ? 'form-control form-control-danger' : 'form-control'" formControlName="newTask"/>
+        <div class="error" *ngIf="form.get('newTask').hasError('required') && form.get('newTask').touched">
+          Name is required
+      </div>
+      </div> -->
+    </form>
+</div>
+
+
+<div class="container">
+    <div class="col-xs-2">
+      <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+   </div>
+          <ul class="list-group" dnd-sortable-container [sortableData]="tasks">
+                <li *ngFor="let item of tasks; let i = index" class="list-group-item panel-header" dnd-sortable [sortableIndex]="i">
+                      <app-task [task]="item" (notify)="onNotify($event)"></app-task>
+                </li>
+          </ul>
+    </div>
+</div>
